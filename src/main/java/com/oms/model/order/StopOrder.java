@@ -1,5 +1,4 @@
 package order;
-import order.Order;
 
 public class StopOrder extends Order{
     private double stopPrice;
@@ -11,6 +10,10 @@ public class StopOrder extends Order{
 
     public double getStopPrice(){
         return this.stopPrice;
+    }
+
+    public boolean isTriggered(double currentMarketPrice){
+        return currentMarketPrice <= this.stopPrice;
     }
 
     @Override

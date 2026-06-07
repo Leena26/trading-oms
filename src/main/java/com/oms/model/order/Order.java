@@ -1,5 +1,4 @@
 package order;
-import order.OrderStatus;
 
 public abstract class Order{
     private String orderId;

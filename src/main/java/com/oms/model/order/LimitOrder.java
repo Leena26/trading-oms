@@ -1,5 +1,4 @@
 package order;
-import order.Order;
 
 public class LimitOrder extends Order{
     private double limitPrice;
