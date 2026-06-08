@@ -1,4 +1,4 @@
-package order;
+package model.order;
 
 public class LimitOrder extends Order{
     private double limitPrice;

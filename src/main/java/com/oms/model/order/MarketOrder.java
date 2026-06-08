@@ -1,4 +1,4 @@
-package order;
+package model.order;
 
 public class MarketOrder extends Order{
     public MarketOrder(String orderId, String traderId, String symbol, int quantity){

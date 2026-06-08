@@ -1,4 +1,4 @@
-package order;
+package model.order;
 
 public abstract class Order{
     private String orderId;

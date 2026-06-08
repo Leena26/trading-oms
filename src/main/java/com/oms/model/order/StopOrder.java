@@ -1,4 +1,4 @@
-package order;
+package model.order;
 
 public class StopOrder extends Order{
     private double stopPrice;
