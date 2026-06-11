@@ -24,6 +24,15 @@ public class MatchingEngine{
     }
 
     public List<Trade> matchOrders(){
+        List<Trade> res = new ArrayList<>();
+        while (!this.orderBook.getBuyOrders().isEmpty() && !this.orderBook.getSellOrders().isEmpty() && this.orderBook.getEffectivePrice(this.orderBook.peekBestBuy()) >= this.orderBook.getEffectivePrice(this.orderBook.peekBestSell())){
+            bestBuy = this.orderBook.pollBestBuy();
+            bestSell = this.orderBook.pollBestSell();
+            double executedPrice = this.orderBook.getEffectivePrice(bestSell);
+            int filledQuantity = Math.min(bestBuy.getQuantity(), bestSell.getQuantity());
+            Trade t = new Trade(UUID.randomUUID().toString(), bestBuy.getOrderId(), bestSell.getOrderId(), bestBuy.getSymbol(), executedPrice, filledQuantity);
+            res.add(t);
+        return t;
     }
 
     public void cancelOrder(String orderId){
