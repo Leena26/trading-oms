@@ -32,6 +32,23 @@ public class MatchingEngine{
             int filledQuantity = Math.min(bestBuy.getQuantity(), bestSell.getQuantity());
             Trade t = new Trade(UUID.randomUUID().toString(), bestBuy.getOrderId(), bestSell.getOrderId(), bestBuy.getSymbol(), executedPrice, filledQuantity);
             res.add(t);
+
+            if (bestBuy.getQuantity() > bestSell.getQuantity()){
+                bestBuy.setQuantity(bestBuy.getQuantity()-filledQuantity);
+                bestBuy.setStatus(OrderStatus.PARTIALLY_FILLED);
+                this.orderBook.addOrder(bestBuy, true);
+                bestSell.setStatus(OrderStatus.FILLED);
+            } else if (bestBuy.getQuantity() < bestSell.getQuantity()){
+                bestSell.setQuantity(bestSell.getQuantity()-filledQuantity);
+                bestSell.setStatus(OrderStatus.PARTIALLY_FILLED);
+                this.orderBook.addOrder(bestSell, true);
+                bestBuy.setStatus(OrderStatus.FILLED);
+            } else {
+                bestBuy.setStatus(OrderStatus.FILLED);
+                bestSell.setStatus(OrderStatus.FILLED);
+            }
+        }
+
         return t;
     }
 
