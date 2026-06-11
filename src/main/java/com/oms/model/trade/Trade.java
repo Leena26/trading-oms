@@ -1,4 +1,4 @@
-package model.trade
+package model.trade;
 import java.time.LocalDateTime;
 
 public class Trade{

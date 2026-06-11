@@ -15,7 +15,7 @@ public class OrderBook{
         this.sellOrders = new PriorityQueue<>((a, b) -> Double.compare(getEffectivePrice(a), getEffectivePrice(b)));
     }
 
-    private double getOrder(Order o){
+    private double getEffectivePrice(Order o){
         if (o instanceof LimitOrder){
             return ((LimitOrder) o).getLimitPrice();
         } else if (o instanceof MarketOrder){
